@@ -1,0 +1,63 @@
+# Node.js
+node_modules/
+*.log
+
+# IDE and OS specific files
+.vscode/
+.idea/
+.DS_Store
+
+# Build artifacts
+build/
+dist/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+
+# Dependency directories
+bower_components/
+jspm_packages/
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+
+# IDE configuration files
+*.iml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Linux
+*~
+
+# Temporary files
+*.tmp
+*.swp
+
+# Generated files by npm or yarn
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+
+# Frontend
+*.map
+
+# Backend
+coverage/
+
+# Specific to your project structure
+app-api/node_modules/
+app-api/dist/
+web-app/node_modules/
+web-app/dist/
+
+# Test artifacts
+test-results/

@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "05bc2010-461d-4af5-8e9f-12cf9623299e",
+		"name": "CMS-IoT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5942121",
+		"_collection_link": "https://formdox.postman.co/workspace/Team-Workspace~443e598c-5632-4597-8050-ea1c699d985d/collection/5942121-05bc2010-461d-4af5-8e9f-12cf9623299e?action=share&source=collection_link&creator=5942121"
+	},
+	"item": [
+		{
+			"name": "Create-an-Account",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Mithilesh Sah\",\n    \"email\":\"mithilesh849@gmail.com\",\n    \"password\":\"Tech@ms\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5004/api/v1/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"ms@gmail.com\",\n    \"password\":\"tech@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5004/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Station",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2IwZWVjYTEwNzBjNjdhZTdmNDc1MWQiLCJpYXQiOjE3Mzk3MDA3MjksImV4cCI6MTczOTcxMTUyOX0.izetEijPw8fZqYnRz31L4hZY_O2YWX9Lp_OflwqQyGg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"stationId\": 102,\n    \"name\": \"Highway EV Station\",\n    \"systemHealth\": {\n      \"maintenanceDate\": \"2025-02-20\",\n      \"currentHealth\": \"Needs Maintenance\"\n    },\n    \"stationSpecification\": {\n      \"maxPowerOutput\": 200,\n      \"inputVoltage\": 480,\n      \"outputRange\": \"250-900V\",\n      \"maxCurrent\": 400\n    },\n    \"chargerCommunication\": {\n      \"online\": 4,\n      \"offline\": 0,\n      \"noData\": 1\n    },\n    \"slots\": [\n      { \"slotId\": \"S005\", \"status\": \"Available\" },\n      { \"slotId\": \"S006\", \"status\": \"Occupied\" },\n      { \"slotId\": \"S007\", \"status\": \"Charging\" },\n      { \"slotId\": \"S008\", \"status\": \"Faulted\" }\n    ]\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5004/api/v1/stations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"v1",
+						"stations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stations List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2IwZWVjYTEwNzBjNjdhZTdmNDc1MWQiLCJpYXQiOjE3Mzk2NDg3MzksImV4cCI6MTczOTY1OTUzOX0.s4ZxFHFHXDYGeuj42FM0QIq-QVWFyjFu7ZRPupBl57o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5004/api/v1/stations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"v1",
+						"stations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create vehicle",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2IwZWVjYTEwNzBjNjdhZTdmNDc1MWQiLCJpYXQiOjE3Mzk3MDA3MjksImV4cCI6MTczOTcxMTUyOX0.izetEijPw8fZqYnRz31L4hZY_O2YWX9Lp_OflwqQyGg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vehicleId\": \"EV002\",\n    \"name\": \"Nissan Leaf\",\n    \"type\": \"Electric\",\n    \"manufacturer\": \"Nissan\",\n    \"model\": \"Leaf 2022\",\n    \"batteryCapacity\": 40,\n    \"batteryHealth\": \"Average\",\n    \"status\": \"Idle\",\n    \"licensePlate\": \"XYZ-5678\",\n    \"slotId\": null,\n    \"stationId\": null\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5004/api/v1/vehicles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"v1",
+						"vehicles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Charging Session",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2IwZWVjYTEwNzBjNjdhZTdmNDc1MWQiLCJpYXQiOjE3Mzk3MDA3MjksImV4cCI6MTczOTcxMTUyOX0.izetEijPw8fZqYnRz31L4hZY_O2YWX9Lp_OflwqQyGg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"vehicle\": \"67b1bb30b3c12172c73f1e00\",\n  \"station\": \"67b1ba6cb3c12172c73f1df4\",\n  \"slot\": \"SLOT-001\",\n  \"startTime\": \"2025-02-16T14:45:00.000Z\",\n  \"chargedPercentage\": 45,\n  \"energyDelivered\": 22.3,\n  \"status\": \"Charging\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5004/api/v1/charging-history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"v1",
+						"charging-history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Charging Session",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2IzMmU0NDViYjMxOTYzMzkzODhlNDEiLCJpYXQiOjE3Mzk4OTY3MDAsImV4cCI6MTczOTkwNzUwMH0.yIg57Sk422O2MMUWcUjJSrcLEIs03flUaietknzTMXo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"status\": \"Charging\", \n  \"chargedPercentage\": 62,\n  \"energyDelivered\": 65 \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5004/api/v1/charging-history/67b33fd3cb2d16343f621903",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"v1",
+						"charging-history",
+						"67b33fd3cb2d16343f621903"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Charging Session Details",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2IzMmU0NDViYjMxOTYzMzkzODhlNDEiLCJpYXQiOjE3Mzk4MTAyMTcsImV4cCI6MTczOTgyMTAxN30.dSXnPIrx25AJu4JkthWTMPyC2yccIpZlARVzjHPdL6I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5004/api/v1/charging-history/getChargingHistoryByCriteria?vehicle=67b33e2f5bb3196339388e54",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"api",
+						"v1",
+						"charging-history",
+						"getChargingHistoryByCriteria"
+					],
+					"query": [
+						{
+							"key": "vehicle",
+							"value": "67b33e2f5bb3196339388e54"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
