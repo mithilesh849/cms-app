@@ -157,7 +157,7 @@ const Dashboard = () => {
           {/* Right Section (70%) - Dynamic */}
           <div className="h-[350px] bg-zinc-900 p-4 rounded-lg shadow-md Vehicle-Details-Card">
 
-          <div className="grid grid-cols-[60%_30%_10%] gap-2 align-middle">
+          <div className="grid grid-cols-[60%_30%_10%] gap-2 align-middle justify-center items-center">
             <div className="w-50">
               <h3 className="text-lg font-normal text-gray-200 mb-1">Vehicle Details</h3>
               <p className="text-sm text-gray-500 mb-2">Charging Station - Slot 1</p>
