@@ -63,11 +63,17 @@ const Dashboard = () => {
     return `${diffHrs} Hours`;
   };
 
+  // Function to format startTime
+  const formatStartTime = () => {
+    if (!chargingHistory) return "N/A";
+    const startTime = new Date(chargingHistory.startTime);
+    return startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+  };
+
   return (
     <AppLayout>
       <div className="max-w-screen-xl mx-auto px-2">
-
-       {/* Charging Stations  */}
+        {/* Charging Stations */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[1, 2, 3, 4].map((station, index) => (
             <Card
@@ -77,17 +83,13 @@ const Dashboard = () => {
               }`}
             >
               <CardContent className="p-4 flex items-center gap-4">
-                {/* Left: Charging Icon */}
                 <div className="w-12 h-12 rounded-lg bg-zinc-800 flex items-center justify-center">
-                <img src={stationIcon} className=" bg-zinc-800 h-6" />
+                  <img src={stationIcon} className="bg-zinc-800 h-6" />
                 </div>
-                {/* Right: Station ID and Slots */}
                 <div className="flex flex-col flex-grow">
                   <p className="text-sm text-gray-400 p-1">Station ID</p>
                   <p className="text-md text-gray-100 p-1">{`STN-${station}`}</p>
-
-                  {/* Slots */}
-                  <div className="mt-3 grid grid-cols-2 gap-2 ">
+                  <div className="mt-3 grid grid-cols-2 gap-2">
                     <Button
                       variant="outline"
                       className="border-none w-full text-gray-500 bg-zinc-800 hover:text-green-400 hover:bg-green-900"
@@ -106,15 +108,12 @@ const Dashboard = () => {
             </Card>
           ))}
         </div>
-        {/* end charging stations */}
-
 
         {/* Charging Station Info */}
         <h2 className="text-xl font-normal mb-4 text-gray-500 mt-4">Charging Station 1 Info</h2>
 
         {/* Two Column Layout */}
-        <div className="w-full max-w-screen-xl mx-auto  justify-center px-4 grid grid-cols-[30%_70%] gap-6">
-          
+        <div className="w-full max-w-screen-xl mx-auto justify-center px-4 grid grid-cols-[30%_70%] gap-6">
           {/* Left Section (30%) - Static */}
           <div className="h-[350px] flex flex-col gap-4">
             {/* Card 1 */}
@@ -156,94 +155,95 @@ const Dashboard = () => {
 
           {/* Right Section (70%) - Dynamic */}
           <div className="h-[350px] bg-zinc-900 p-4 rounded-lg shadow-md Vehicle-Details-Card">
-
-          <div className="grid grid-cols-[60%_30%_10%] gap-2 align-middle justify-center items-center">
-            <div className="w-50">
-              <h3 className="text-lg font-normal text-gray-200 mb-1">Vehicle Details</h3>
-              <p className="text-sm text-gray-500 mb-2">Charging Station - Slot 1</p>
-            </div>
-            <div className="gap-3"> 
-                <Button variant="outline" className=" mx-3 border-none bg-green-800 text-green-400 ">
+            <div className="grid grid-cols-[60%_30%_10%] gap-2 align-middle justify-center items-center">
+              <div className="w-50">
+                <h3 className="text-lg font-normal text-gray-200 mb-1">Vehicle Details</h3>
+                <p className="text-sm text-gray-500 mb-2">Charging Station - Slot-1</p>
+              </div>
+              <div className="gap-3">
+                <Button variant="outline" className="mx-3 border-none bg-green-800 text-green-400">
                   Slot-1
                 </Button>
                 <Button variant="outline" className="border-none text-gray-500 bg-zinc-800 hover:text-green-400 hover:bg-green-900">
                   Slot-2
                 </Button>
-            </div>
-            <div> 
-            <img src={powerBtnIcon} alt="Power Button" />
+              </div>
+              <div>
+                <img src={powerBtnIcon} alt="Power Button" />
+              </div>
             </div>
 
-          </div>
             <div className="grid grid-cols-[45%_10%_20%_20%] gap-2 mt-4 mb-3">
               {/* col-1 */}
               <div className="flex items-center justify-center">
-                {/* vehile image here */}
                 <img src={evanImage} alt="Evan's Van" />
               </div>
 
-              {/* col-2 dottet gra border */}
-              <div className= "flex justify-center  ">
-                <div className= "border-dotted border-l-2 border-gray-500"></div>
+              {/* col-2 dotted gray border */}
+              <div className="flex justify-center">
+                <div className="border-dotted border-l-2 border-gray-500"></div>
               </div>
 
               {/* col-3 */}
-              <div className=" justify-center p-4 shadow-md">
-              {/* circle here */}
-              <div className="relative w-32 h-32 flex items-center justify-center">
-                {/* outer circle */}
-                <div className="absolute inset-0 border-4 border-black rounded-full"></div>
-               {/* inner circle */}
-                <div className=" rounded-full flex items-center justify-center">
-                  <div className="text-center text-gray-900 text-sm leading-tight">
-                  {chargingHistory ? (
-                    <div className="text-green-400"> {chargingHistory.chargedPercentage}%</div>
-                  ) : (
-                    <div className="text-gray-500">N/A</div>
-                  )}
-                    <div className="text-gray-500 pt-2">Charged</div>
+              <div className="justify-center p-4 shadow-md">
+                <div className="relative w-32 h-32 flex items-center justify-center">
+                  <div className="absolute inset-0 border-8 border-zinc-700 rounded-full"></div>
+                  <div className="rounded-full flex items-center justify-center">
+                    <div className="text-center text-gray-900 text-sm leading-tight">
+                      {chargingHistory ? (
+                        <div className="text-green-400">{chargingHistory.chargedPercentage}%</div>
+                      ) : (
+                        <div className="text-gray-500">N/A</div>
+                      )}
+                      <div className="text-gray-500 pt-2">Charged</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* col-4 */}
-              <div className=" justify-center p-2 rounded-lg shadow-md">
 
-                <div className="bg-zinc-950 p-4 rounded-lg shadow-md  flex flex-col mb-2">
-                  <div className="text-sm text-gray-100 mb-2 mt-2 w-full block">10:00 AM</div>
-                  <div className="text-sm text-gray-500 w-full block">Est End Time</div>
-
-                  <div className="text-sm text-gray-100 mb-2 mt-2 w-full block">12:00 PM</div>
+              {/* col-4 */}
+              <div className="justify-center p-2 rounded-lg shadow-md">
+                <div className="bg-zinc-950 p-4 rounded-lg shadow-md flex flex-col mb-2">
+                  {chargingHistory ? (
+                    <>
+                      <div className="text-sm text-gray-100 mb-2 mt-2 w-full block">{formatStartTime()}</div>
+                      <div className="text-sm text-gray-500 w-full block">Start Time</div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-sm text-gray-100 mb-2 mt-2 w-full block">N/A</div>
+                      <div className="text-sm text-gray-500 w-full block">Start Time</div>
+                    </>
+                  )}
+                  <div className="text-sm text-gray-100 mb-2 mt-2 w-full block">N/A</div>
                   <div className="text-sm text-gray-500 w-full block">Est End Time</div>
                 </div>
               </div>
-
             </div>
 
             {/* 3rd row */}
-            <div className="grid  grid-cols-5 content-end gap-2 pb-4 mt-6">
+            <div className="grid grid-cols-5 content-end gap-2 pb-4 mt-6">
               {chargingHistory ? (
                 <>
-                  <div className=" ">
-                    <p className="text-xs text-gray-500 pb-2">Vehicle ID</p>
-                    <p className="text-xs text-gray-300">{chargingHistory.vehicle.vehicleId}</p>
+                  <div className="">
+                    <p className="text-xs text-gray-300 pb-2">Vehicle ID</p>
+                    <p className="text-xs text-gray-500">{chargingHistory.vehicle.vehicleId}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 pb-2">{chargingHistory.energyDelivered} kWh</p>
-                    <p className="text-xs text-gray-300">Energy Delivered</p>
+                    <p className="text-xs text-gray-300 pb-2">{chargingHistory.energyDelivered} kWh</p>
+                    <p className="text-xs text-gray-500">Energy Delivered</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 pb-2">{chargingHistory.vehicle.batteryHealth}</p>
-                    <p className="text-xs text-gray-300">Battery Health</p>
+                    <p className="text-xs text-gray-300 pb-2">{chargingHistory.vehicle.batteryHealth}</p>
+                    <p className="text-xs text-gray-500">Battery Health</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 pb-2">{chargingHistory.status}</p>
-                    <p className="text-xs text-gray-300">Status</p>
+                    <p className="text-xs text-gray-300 pb-2">{chargingHistory.status}</p>
+                    <p className="text-xs text-gray-500">Status</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 pb-2">{calculateTimeConnected()}</p>
-                    <p className="text-xs text-gray-300">Connected</p>
+                    <p className="text-xs text-gray-300 pb-2">{calculateTimeConnected()}</p>
+                    <p className="text-xs text-gray-500">Connected</p>
                   </div>
                 </>
               ) : (
@@ -252,8 +252,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-
-         {/* Charging Station Info end */}
 
         {/* Additional Info - Static */}
         <div className="grid grid-cols-2 gap-4 mb-4 mt-6">
@@ -266,7 +264,6 @@ const Dashboard = () => {
             <p className="text-sm text-gray-500 mt-3">Station-wide OCPP metrics and transaction data</p>
           </Card>
         </div>
-
       </div>
     </AppLayout>
   );
